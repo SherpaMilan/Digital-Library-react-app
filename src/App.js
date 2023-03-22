@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+
+import BookList from "./pages/books/BookList";
+import NewBooks from "./pages/books/NewBooks";
+import BorrowHistory from "./pages/borrow-history/BorrowHistory";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/home/Home";
+import BookLanding from "./pages/landing/BookLanding";
+import SignIn from "./pages/SignIn-SignUp/SignIn";
+import SignUp from "./pages/SignIn-SignUp/SignUp";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Routes>
+        {/* public routers */}
+        <Route path="/" element={<Home />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="signin" element={<SignIn />} />
+
+        <Route path="book/:bookId" element={<BookLanding />} />
+
+        {/* private routers */}
+        {/* all loged in access */}
+        <Route path="borrow-history" element={<BorrowHistory />} />
+
+        {/* only admin access */}
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="admin/books" element={<BookList />} />
+        <Route path="admin/new" element={<NewBooks />} />
+      </Routes>
     </div>
   );
 }
